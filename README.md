@@ -11,6 +11,10 @@ This is a Single-Molecule Break Junctions experiment data processing software bu
 * python(3.5+)
 
 ## HOW TO USE  
+* Download software  
+Please click [here](https://github.com/Gang-Dong/Pilab-DataAnalysis/releases) to download the data processing software.
+
+* Use operation document  
 You can download the [operation document](https://github.com/Gang-Dong/Pilab-DataAnalysis/blob/master/Operation-document/%E6%93%8D%E4%BD%9C%E6%96%87%E6%A1%A31.1.docx) (This is a Chinese document, English instructions will be added in the future)
 and follow the instructions to complete the data analysis. If there are any problems during use, 
 please [issue](https://github.com/Gang-Dong/Pilab-DataAnalysis/issues) here or contact me by `email(gangdong@stu.xmu.edu.cn)`
