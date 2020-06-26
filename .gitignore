@@ -199,3 +199,4 @@ cython_debug/
 # add
 *.ui
 .idea/
+config
