@@ -7,7 +7,6 @@ import sys
 
 from untitled_V13_3 import *
 from matplotlib.backends.backend_qt5 import NavigationToolbar2QT as NavigationToolbar
-import matplotlib.pyplot as plt
 from matplotlib.widgets import Cursor
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QVBoxLayout, QFileDialog, QStyleFactory, QMainWindow,QMessageBox
