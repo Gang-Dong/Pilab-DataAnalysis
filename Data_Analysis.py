@@ -47,9 +47,10 @@ class Data_Analysis(QObject):
             if file_path[-4:] == 'tdms':
                 print(str(file_path), '加载中...')
                 tdms_file = TdmsFile.read(file_path)
-                groups = tdms_file.groups()
-                channel_object = groups[0][channel]
-                samp_v.extend(channel_object.data)
+                channel_object=tdms_file.groups()[0].channel()[0][:]
+                # groups = tdms_file.groups()
+                # channel_object = groups[0][channel]
+                samp_v.extend(channel_object)
         # samp_v = np.array(samp_v).reshape(-1, 1)
         samp_v=np.array((samp_v)).reshape(-1)
         print('Total data points: ', len(samp_v))
