@@ -39,20 +39,8 @@ class Data_Analysis(QObject):
     def loadDataFromFile(self):
         start_time1=time.perf_counter()
         self.sbar.emit('Loading data from file ...')
-
-        samp_v, piezo_v = [], []
-        channel = "RT-IO:AI0 Volt. [V]"
-        file_paths = self.key_para['file_path']
-        for file_path in file_paths:
-            if file_path[-4:] == 'tdms':
-                print(str(file_path), '加载中...')
-                tdms_file = TdmsFile.read(file_path)
-                channel_object=tdms_file.groups()[0].channel()[0][:]
-                # groups = tdms_file.groups()
-                # channel_object = groups[0][channel]
-                samp_v.extend(channel_object)
-        # samp_v = np.array(samp_v).reshape(-1, 1)
-        samp_v=np.array((samp_v)).reshape(-1)
+        key_para=self.key_para
+        samp_v=self.getSampv(key_para)
         print('Total data points: ', len(samp_v))
         self.tbrow.emit('Total data points: {}'.format(len(samp_v)))
         # data = pd.DataFrame(samp_v, columns=['sampling_voltage'])
@@ -99,6 +87,34 @@ class Data_Analysis(QObject):
                            })
         return data
 
+    def getSampv(self,key_para):
+        file_paths=key_para['file_path']
+        model=key_para['fit_model']
+        if model == 'Fit3':
+            samp_v=self.loadTDMSFit3(file_paths)
+        else:
+            samp_v=self.loadTMDS(file_paths)
+        return samp_v
+
+    def loadTMDS(self,file_paths):
+        samp_v = []
+        for file_path in file_paths:
+            print(str(file_path), '加载中...')
+            tdms_file = TdmsFile.read(file_path)
+            channel_object = tdms_file.groups()[0].channels()[0][:]
+            samp_v.extend(channel_object)
+        samp_v = np.array(samp_v)
+        return samp_v
+
+    def loadTDMSFit3(self,file_paths):
+        samp_v=[]
+        for file_path in file_paths:
+            print(str(file_path), '加载中...')
+            tdms_file = TdmsFile.read(file_path)
+            channel_object = tdms_file.groups()[-1].channels()[0][:]
+            samp_v.extend(channel_object)
+        samp_v=np.array(samp_v)
+        return samp_v
 
     def getCurrentFit1(self,sv):    #sv sampling voltage
         p = self.key_para

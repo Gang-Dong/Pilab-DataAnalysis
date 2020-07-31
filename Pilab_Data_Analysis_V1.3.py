@@ -441,8 +441,8 @@ class XMewindow(QMainWindow,Ui_MainWindow):
         # print(self.cut_trigger)
         res=self.checkState(self.cut_trigger)
         if not res:
+            self.showProgressBar(int(0))
             return
-
         self.cal2DConductance()
 
     def checkState(self,cut_trigger):
