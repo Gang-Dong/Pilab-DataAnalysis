@@ -559,7 +559,7 @@ class XMewindow(QMainWindow,Ui_MainWindow):
 
         trace_n = len(self.cut_trigger)
         select_trace_n = len(self.select_cut_trigger)
-        select_ratio = trace_n / select_trace_n * 100
+        select_ratio = select_trace_n / trace_n * 100
         print('select_ratio : ',select_ratio)
         self.QTB_all_trace.setText(str(trace_n))
         self.QTB_selected_trace.setText(str(select_trace_n))
